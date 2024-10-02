@@ -81,6 +81,10 @@ static const char sccsid[] = "@(#)main.c	8.2 (Berkeley) 1/3/94";
 #endif
 #endif
 
+#ifdef __linux__
+const char *program_name;
+#endif
+
 /*
  * getprogname() is a BSD thing.
  * program_invocation_short_name, which is a GNU extension available in glibc
@@ -89,8 +93,9 @@ static const char sccsid[] = "@(#)main.c	8.2 (Berkeley) 1/3/94";
 #include <errno.h>  // This header defines program_invocation_short_name
 const char *getprogname() {
     //return program_invocation_short_name;  // GNU-specific
-    //why did one server not have the correct headers?
-	extern char *program_name;  // You can declare this globally and initialize in main() as argv[0]
+    //why did one server not have the correct headers?  I fixed things by explicitly getting this information
+	//from argv in main
+	//extern char *program_name;  // You can declare this globally and initialize in main() as argv[0]
     return program_name;
 
 }
@@ -191,6 +196,9 @@ main(int argc, char *argv[])
 	char *temp_arg;
 
 	(void) setlocale(LC_ALL, "");
+	#ifdef __linux__
+    program_name = argv[0];  // Assign the program name
+    #endif
 
 	fflag = 0;
 	fflagstdin = 0;
