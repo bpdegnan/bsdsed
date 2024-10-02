@@ -63,6 +63,11 @@ static const char sccsid[] = "@(#)process.c	8.6 (Berkeley) 4/20/94";
 
 #include "defs.h"
 #include "extern.h"
+#ifdef __linux__
+#include <wchar.h>  // For wcwidth
+#endif
+
+
 
 static SPACE HS, PS, SS, YS;
 #define	pd		PS.deleted

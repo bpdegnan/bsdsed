@@ -81,6 +81,48 @@ static const char sccsid[] = "@(#)main.c	8.2 (Berkeley) 1/3/94";
 #endif
 #endif
 
+/*
+ * getprogname() is a BSD thing.
+ * program_invocation_short_name, which is a GNU extension available in glibc
+ */
+#ifdef __linux__
+const char *getprogname() {
+    return program_invocation_short_name;  // GNU-specific
+}
+#endif
+
+
+/*
+ * strlcpy and strlcat:
+ * These functions are also BSD-specific and not available on Linux. 
+ */
+
+#ifndef __linux__
+#include <string.h>
+
+size_t strlcpy(char *dst, const char *src, size_t size) {
+    size_t srclen = strlen(src);
+    if (size > 0) {
+        size_t copylen = (srclen >= size) ? size - 1 : srclen;
+        memcpy(dst, src, copylen);
+        dst[copylen] = '\0';
+    }
+    return srclen;
+}
+
+size_t strlcat(char *dst, const char *src, size_t size) {
+    size_t dstlen = strlen(dst);
+    size_t srclen = strlen(src);
+    if (dstlen < size - 1 && size > 0) {
+        size_t copylen = (srclen >= size - dstlen) ? size - dstlen - 1 : srclen;
+        memcpy(dst + dstlen, src, copylen);
+        dst[dstlen + copylen] = '\0';
+    }
+    return dstlen + srclen;
+}
+#endif
+
+
 
 /*
  * Linked list of units (strings and files) to be compiled
