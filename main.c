@@ -68,6 +68,17 @@ static const char sccsid[] = "@(#)main.c	8.2 (Berkeley) 1/3/94";
 #include "defs.h"
 #include "extern.h"
 
+#include <stdlib.h>  // For abort()
+
+#ifndef __unreachable
+#if defined(__GNUC__) || defined(__clang__)
+#define __unreachable() __builtin_unreachable()
+#else
+#define __unreachable() abort()  // Fallback for non-GCC/Clang compilers
+#endif
+#endif
+
+
 /*
  * Linked list of units (strings and files) to be compiled
  */

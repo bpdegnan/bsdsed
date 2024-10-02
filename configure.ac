@@ -3,6 +3,7 @@
 
 AC_PREREQ([2.72])
 AC_INIT([sed], [8.2], [https://github.com/bpdegnan/bsdsed])
+AM_INIT_AUTOMAKE([foreign])
 AC_CONFIG_SRCDIR([compile.c])
 AC_CONFIG_HEADERS([config.h])
 
