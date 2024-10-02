@@ -6,8 +6,7 @@ AUTOMAKE="automake"
 AUTOCONF="autoconf"
 
 echo "running aclocal"
-mkdir scripts
-${ACLOCAL} ${ACLOCAL_ARGS} -I scripts
+${ACLOCAL} ${ACLOCAL_ARGS} 
 
 echo "running autoheader"
 ${AUTOHEADER}
