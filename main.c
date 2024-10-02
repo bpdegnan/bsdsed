@@ -88,10 +88,10 @@ static const char sccsid[] = "@(#)main.c	8.2 (Berkeley) 1/3/94";
 #ifdef __linux__
 #include <errno.h>  // This header defines program_invocation_short_name
 const char *getprogname() {
-    return program_invocation_short_name;  // GNU-specific
+    //return program_invocation_short_name;  // GNU-specific
     //why did one server not have the correct headers?
-	//extern char *program_name;  // You can declare this globally and initialize in main() as argv[0]
-    //return program_name;
+	extern char *program_name;  // You can declare this globally and initialize in main() as argv[0]
+    return program_name;
 
 }
 #endif
