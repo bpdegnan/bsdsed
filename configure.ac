@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.72])
+AC_PREREQ([2.70])
 AC_INIT([sed], [8.2], [https://github.com/bpdegnan/bsdsed])
 AM_INIT_AUTOMAKE([foreign])
 AC_CONFIG_SRCDIR([compile.c])
