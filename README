@@ -1,0 +1,8 @@
+This is a port of BSD sed 8.2 to compile on BSD and Linux.  The motivation for this was to have an executable on Linux that behaves the same as it does on the BSDs.  There's a bsdtar project, but not a bsdsed, so here is bsdsed.
+
+./autogen.sh
+./configure
+make
+
+This was my first foray into "Linux-like" projects with autoconf.  For this reason, you'll need autoconf in order compile this.  The "make check" doesn't work, and I haven't sorted that out yet.
+
